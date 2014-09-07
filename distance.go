@@ -50,7 +50,9 @@ func GetBoundingBox(lat, lng, distance float64) *BBox {
 		maxLng = MAX_LNG
 	}
 
-	return &BBox{southwest: LatLng{lat: toDegrees(minLat), lng: toDegrees(minLng)}, northeast: LatLng{lat: toDegrees(maxLat), lng: toDegrees(maxLng)}}
+	return &BBox{
+		southwest: LatLng{lat: toDegrees(minLat), lng: toDegrees(minLng)},
+		northeast: LatLng{lat: toDegrees(maxLat), lng: toDegrees(maxLng)}}
 }
 
 func GetMidPoint(points []*LatLng) (*LatLng, error) {
