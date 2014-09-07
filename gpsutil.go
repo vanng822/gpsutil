@@ -18,18 +18,44 @@ func (latlng *LatLng) Lng() float64 {
 }
 
 type GeohashDecoded struct {
-	lat float64
-	lng float64
-	err struct {
-		lat float64
-		lgn float64
-	}
+	lat    float64
+	lng    float64
+	latErr float64
+	lgnErr float64
+}
+
+func (ghd *GeohashDecoded) Lat() float64 {
+	return ghd.lat
+}
+
+func (ghd *GeohashDecoded) Lng() float64 {
+	return ghd.lng
+}
+
+func (ghd *GeohashDecoded) LatErr() float64 {
+	return ghd.latErr
+}
+
+func (ghd *GeohashDecoded) LngErr() float64 {
+	return ghd.lgnErr
 }
 
 type BBox struct {
-	Southwest *LatLng
-	Northeast *LatLng
-	Center    *LatLng
+	southwest *LatLng
+	northeast *LatLng
+	center    *LatLng
+}
+
+func (bbox *BBox) Southwest() *LatLng {
+	return bbox.southwest
+}
+
+func (bbox *BBox) Northeast() *LatLng {
+	return bbox.northeast
+}
+
+func (bbox *BBox) Center() *LatLng {
+	return bbox.center
 }
 
 func toRad(decDegrees float64) float64 {
