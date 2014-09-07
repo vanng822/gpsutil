@@ -10,8 +10,8 @@ type LatLng struct {
 }
 
 type GeohashDecoded struct {
-	lat   float64
-	lng   float64
+	lat float64
+	lng float64
 	err struct {
 		lat float64
 		lgn float64
@@ -19,8 +19,9 @@ type GeohashDecoded struct {
 }
 
 type BBox struct {
-	Southwest LatLng
-	Northeast LatLng
+	Southwest *LatLng
+	Northeast *LatLng
+	Center    *LatLng
 }
 
 func toRad(decDegrees float64) float64 {
