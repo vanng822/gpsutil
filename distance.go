@@ -7,7 +7,7 @@ import (
 func GetDistance(lng1, lat1, lng2, lat2 float64) float64 {
 	dLat := toRad(lat2 - lat1)
 	dLng := toRad(lng2 - lng1)
-	a := math.Sin(dLat/2)*math.Sin(dLat/2) + math.Sin(dLng/2)*math.Sin(dLng/2)*math.Cos(toRad(lat1))*math.Cos(toRad(lat2))
+	a := math.Pow(math.Sin(dLat/2), 2) + math.Pow(math.Sin(dLng/2), 2) * math.Cos(toRad(lat1))*math.Cos(toRad(lat2))
 	c := 2 * math.Atan2(math.Sqrt(a), math.Sqrt(1-a))
 	return c * EARTH_RADIUS
 }
