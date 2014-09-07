@@ -29,15 +29,14 @@ func GetBoundingBox(lat, lng, distance float64) *BBox {
 
 func GetMidPoint(points []*LatLng) (*LatLng, error) {
 	length := len(points)
-	x := 0.0
-	y := 0.0
-	z := 0.0
-
 	if length < 1 {
 		return nil, fmt.Errorf("Points must not be empty")
 	} else if length == 1 {
 		return &LatLng{lat: points[0].lat, lng: points[0].lng}, nil
 	}
+	x := 0.0
+	y := 0.0
+	z := 0.0
 	var lat, lng float64
 
 	for i := 0; i < length; i++ {
