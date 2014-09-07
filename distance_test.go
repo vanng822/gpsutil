@@ -58,6 +58,24 @@ func TestGetMidPointOne(t *testing.T) {
 	}
 }
 
+func TestGetMidPointSamePoint(t *testing.T) {
+	expected := &LatLng{lat: 59.1929003689438, lng: 17.662896132096648}
+	points := make([]*LatLng, 4)
+	points[0] = &LatLng{lat: 59.1929003689438, lng: 17.662896132096648}
+	points[1] = &LatLng{lat: 59.1929003689438, lng: 17.662896132096648}
+	points[2] = &LatLng{lat: 59.1929003689438, lng: 17.662896132096648}
+	points[3] = &LatLng{lat: 59.1929003689438, lng: 17.662896132096648}
+	
+	result, _ := GetMidPoint(points)
+	if result.Lng() != expected.Lng() {
+		t.Errorf("Expected '%v' but got '%v'", expected.Lng(), result.Lng())
+	}
+	
+	if result.Lat() != expected.Lat() {
+		t.Errorf("Expected '%v' but got '%v'", expected.Lat(), result.Lat())
+	}
+}
+
 func TestGetMidPointMultiPoints(t *testing.T) {
 	expected := &LatLng{lat: 59.3000383089087, lng: 17.299706052455726}
 	points := make([]*LatLng, 2)
