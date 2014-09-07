@@ -9,6 +9,14 @@ type LatLng struct {
 	lng float64
 }
 
+func (latlng *LatLng) Lat() float64 {
+	return latlng.lat
+}
+
+func (latlng *LatLng) Lng() float64 {
+	return latlng.lng
+}
+
 type GeohashDecoded struct {
 	lat float64
 	lng float64
