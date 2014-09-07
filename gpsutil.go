@@ -12,7 +12,7 @@ type LatLng struct {
 type GeohashDecoded struct {
 	lat   float64
 	lng   float64
-	error struct {
+	err struct {
 		lat float64
 		lgn float64
 	}
