@@ -23,5 +23,13 @@ func TestGetTotalDistance(t *testing.T) {
 	if result != expected {
 		t.Errorf("Expected '%v' but got '%v'", expected, result)
 	}
-		
+}
+
+func TestGetTotalDistanceZero(t *testing.T) {
+	expected := 0.0
+	points := make([]LatLng, 0)
+	result := GetTotalDistance(points)
+	if result != expected {
+		t.Errorf("Expected '%v' but got '%v'", expected, result)
+	}
 }
