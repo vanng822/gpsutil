@@ -41,21 +41,16 @@ func (ghd *GeohashDecoded) LngErr() float64 {
 }
 
 type BBox struct {
-	southwest *LatLng
-	northeast *LatLng
-	center    *LatLng
+	southwest LatLng
+	northeast LatLng
 }
 
 func (bbox *BBox) Southwest() *LatLng {
-	return bbox.southwest
+	return &bbox.southwest
 }
 
 func (bbox *BBox) Northeast() *LatLng {
-	return bbox.northeast
-}
-
-func (bbox *BBox) Center() *LatLng {
-	return bbox.center
+	return &bbox.northeast
 }
 
 func toRad(decDegrees float64) float64 {
