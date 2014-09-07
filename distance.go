@@ -27,29 +27,29 @@ func GetBoundingBox(lat, lng, distance float64) *BBox {
 	radDist := distance / EARTH_RADIUS
 	radLat := toRad(lat)
 	radLng := toRad(lng)
-	
-	var minLat, maxLat, minLng, maxLng, deltaLng float64
-	
-	minLat = radLat - radDist;
-	maxLat = radLat + radDist;
 
-	if(minLat > MIN_LAT && maxLat < MAX_LAT) {
-		deltaLng = math.Asin(math.Sin(radDist) / math.Cos(radLat));
-		minLng = radLng - deltaLng;
-		if(minLng < MIN_LNG) {
-			minLng += 2 * math.Pi;
+	var minLat, maxLat, minLng, maxLng, deltaLng float64
+
+	minLat = radLat - radDist
+	maxLat = radLat + radDist
+
+	if minLat > MIN_LAT && maxLat < MAX_LAT {
+		deltaLng = math.Asin(math.Sin(radDist) / math.Cos(radLat))
+		minLng = radLng - deltaLng
+		if minLng < MIN_LNG {
+			minLng += 2 * math.Pi
 		}
-		maxLng = radLng + deltaLng;
-		if(maxLng > MAX_LNG) {
-			maxLng -= 2 * math.Pi;
+		maxLng = radLng + deltaLng
+		if maxLng > MAX_LNG {
+			maxLng -= 2 * math.Pi
 		}
 	} else {
-		minLat = math.Max(minLat, MIN_LAT);
-		maxLat = math.Min(maxLat, MAX_LAT);
-		minLng = MIN_LNG;
-		maxLng = MAX_LNG;
+		minLat = math.Max(minLat, MIN_LAT)
+		maxLat = math.Min(maxLat, MAX_LAT)
+		minLng = MIN_LNG
+		maxLng = MAX_LNG
 	}
-	
+
 	return &BBox{southwest: LatLng{lat: toDegrees(minLat), lng: toDegrees(minLng)}, northeast: LatLng{lat: toDegrees(maxLat), lng: toDegrees(maxLng)}}
 }
 
