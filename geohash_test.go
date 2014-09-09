@@ -44,3 +44,21 @@ func TestGeohashDecode(t *testing.T) {
 	}
 	
 }
+
+func TestGeohashDecodeInvalidChar(t *testing.T) {
+	result, err := GeohashDecode("u4pot")
+	
+	if  result != nil {
+		t.Errorf("Result expected to be nil")
+	}
+
+	if err == nil {
+		t.Errorf("Expected an error")
+		t.FailNow()
+	}
+	expected := "Character 'o' doesn't be a part of base32"
+	if err.Error() != expected {
+		t.Errorf("Expected '%s' but got '%s'", expected, err.Error())
+	}
+	
+}
