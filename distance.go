@@ -85,8 +85,8 @@ func GetMidPoint(points []*LatLng) (*LatLng, error) {
 	return &LatLng{lat: toDegrees(lat), lng: toDegrees(lng)}, nil
 }
 
-// GetPointByBearing return a point calculated by on a given point, bearing and travelling distance
-// lat, lng given in decimal degrees. bearing is given in degrees and distance is in meters
+// GetPointByBearing return a point calculated based on a given point, bearing and travelling distance
+// lat, lng given in decimal degrees, bearing is given in degrees and distance is in meters
 func GetPointByBearing(lat, lng, bearing, distance float64) *LatLng {
 	radLat := toRad(lat)
 	radLng := toRad(lng)
