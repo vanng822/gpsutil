@@ -144,6 +144,10 @@ func TestGetPointByBearing(t *testing.T) {
 	result := GetPointByBearing(41.8723889, 12.48018019999995, 360, 10000)
 	expectedLng := 12.48018019999995
 	if result.Lng() != expectedLng {
-		t.Errorf("Expected lng '%v' but got '%v'", expectedLng, result)
+		t.Errorf("Expected lng '%v' but got '%v'", expectedLng, result.Lng())
+	}
+	result = GetPointByBearing(41.8723889, 12.48018019999995, 180, 10000)
+	if result.Lng() != expectedLng {
+		t.Errorf("Expected lng '%v' but got '%v'", expectedLng, result.Lng())
 	}
 }
