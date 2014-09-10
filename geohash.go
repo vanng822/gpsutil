@@ -24,7 +24,7 @@ func GeohashEncode(lat, lng float64, precision int) string {
 
 	var mid float64
 	var hashPos, bit int
-	var geohash bytes.Buffer
+	var hash bytes.Buffer
 	even := true
 	for precision > 0 {
 		hashPos = 0
@@ -48,10 +48,10 @@ func GeohashEncode(lat, lng float64, precision int) string {
 			}
 			even = !even
 		}
-		geohash.WriteByte(base32[hashPos])
+		hash.WriteByte(base32[hashPos])
 		precision -= 1
 	}
-	return geohash.String()
+	return hash.String()
 }
 
 func GeohashDecode(hash string) (*GeohashDecoded, error) {
