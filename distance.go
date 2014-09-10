@@ -84,3 +84,17 @@ func GetMidPoint(points []*LatLng) (*LatLng, error) {
 
 	return &LatLng{lat: toDegrees(lat), lng: toDegrees(lng)}, nil
 }
+
+// GetPointByBearing return a point calculated by on a given point, bearing and travelling distance
+// lat, lng given in decimal degrees. bearing is given in degrees and distance is in meters
+func GetPointByBearing(lat, lng, bearing, distance float64) *LatLng {
+	radLat := toRad(lat)
+	radLng := toRad(lng)
+	radBearing := toRad(bearing)
+	radDist := distance / EARTH_RADIUS
+	
+	radLat2 := math.Asin(math.Sin(radLat)*math.Cos(radDist) + math.Cos(radLat)*math.Sin(radDist)*math.Cos(radBearing))
+	radLng2 := radLng + math.Atan2(math.Sin(radBearing)*math.Sin(radDist)*math.Cos(lat), math.Cos(radDist)-math.Sin(radLat)*math.Sin(radLat2))
+
+	return &LatLng{lat: toDegrees(radLat2), lng: toDegrees(radLng2)}
+}
