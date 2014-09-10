@@ -5,6 +5,7 @@ import (
 	"math"
 )
 
+// GetDistance returns distance in meters between 2 given points 
 func GetDistance(lng1, lat1, lng2, lat2 float64) float64 {
 	dLat := toRad(lat2 - lat1)
 	dLng := toRad(lng2 - lng1)
@@ -13,6 +14,7 @@ func GetDistance(lng1, lat1, lng2, lat2 float64) float64 {
 	return c * EARTH_RADIUS
 }
 
+// GetTotalDistance returns total distance in meters for between points in a list
 func GetTotalDistance(points []*LatLng) float64 {
 	max := len(points) - 1
 	total := 0.0
@@ -23,6 +25,7 @@ func GetTotalDistance(points []*LatLng) float64 {
 	return total
 }
 
+// GetBoundingBox returns a bounding box for a point and certain distance in meters
 func GetBoundingBox(lat, lng, distance float64) *BBox {
 	radDist := distance / EARTH_RADIUS
 	radLat := toRad(lat)
@@ -55,6 +58,7 @@ func GetBoundingBox(lat, lng, distance float64) *BBox {
 		northeast: LatLng{lat: toDegrees(maxLat), lng: toDegrees(maxLng)}}
 }
 
+// GetMidPoint returns center point calculated based on a list of points
 func GetMidPoint(points []*LatLng) (*LatLng, error) {
 	length := len(points)
 	if length < 1 {
@@ -85,7 +89,7 @@ func GetMidPoint(points []*LatLng) (*LatLng, error) {
 	return &LatLng{lat: toDegrees(lat), lng: toDegrees(lng)}, nil
 }
 
-// GetPointByBearing return a point calculated based on a given point, bearing and travelling distance
+// GetPointByBearing returns a point calculated based on a given point, bearing and travelling distance
 // lat, lng given in decimal degrees, bearing is given in degrees and distance is in meters
 func GetPointByBearing(lat, lng, bearing, distance float64) *LatLng {
 	radLat := toRad(lat)
