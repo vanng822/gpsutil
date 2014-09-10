@@ -17,10 +17,10 @@ func GeohashEncode(lat, lng float64, precision int) string {
 	if precision < 1 {
 		precision = 12
 	}
-	maxLat := float64(90)
-	minLat := float64(-90)
-	maxLng := float64(180)
-	minLng := float64(-180)
+	maxLat := 90.0
+	minLat := -90.0
+	maxLng := 180.0
+	minLng := -180.0
 
 	var mid float64
 	var hashPos, bit int
